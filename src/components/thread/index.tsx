@@ -322,9 +322,9 @@ export function Thread() {
                   </Button>
                 )}
               </div>
-              <div className="absolute top-2 right-4 flex items-center">
+              {/* <div className="absolute top-2 right-4 flex items-center">
                 <OpenGitHubRepo />
-              </div>
+              </div> */}
             </div>
           )}
           {chatStarted && (
@@ -357,20 +357,22 @@ export function Thread() {
                     damping: 30,
                   }}
                 >
-                  <LangGraphLogoSVG
+                  <img
+                    src="/favicon.ico"
                     width={32}
                     height={32}
+                    alt="PromoBrain"
                   />
                   <span className="text-xl font-semibold tracking-tight">
-                    Agent Chat
+                    PromoBrain
                   </span>
                 </motion.button>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="flex items-center">
+                {/* <div className="flex items-center">
                   <OpenGitHubRepo />
-                </div>
+                </div> */}
                 <TooltipIconButton
                   size="lg"
                   className="p-4"
@@ -433,9 +435,14 @@ export function Thread() {
                 <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
                   {!chatStarted && (
                     <div className="flex items-center gap-3">
-                      <LangGraphLogoSVG className="h-8 flex-shrink-0" />
+                      <img
+                        src="/favicon.ico"
+                        width={32}
+                        height={32}
+                        alt="PromoBrain"
+                      />
                       <h1 className="text-2xl font-semibold tracking-tight">
-                        Agent Chat
+                        PromoBrain
                       </h1>
                     </div>
                   )}
@@ -481,7 +488,7 @@ export function Thread() {
                       />
 
                       <div className="flex items-center gap-6 p-2 pt-4">
-                        <div>
+                        {/* <div>
                           <div className="flex items-center space-x-2">
                             <Switch
                               id="render-tool-calls"
@@ -495,8 +502,8 @@ export function Thread() {
                               Hide Tool Calls
                             </Label>
                           </div>
-                        </div>
-                        <Label
+                        </div> */}
+                        {/* <Label
                           htmlFor="file-input"
                           className="flex cursor-pointer items-center gap-2"
                         >
@@ -504,7 +511,7 @@ export function Thread() {
                           <span className="text-sm text-gray-600">
                             Upload PDF or Image
                           </span>
-                        </Label>
+                        </Label> */}
                         <input
                           id="file-input"
                           type="file"
