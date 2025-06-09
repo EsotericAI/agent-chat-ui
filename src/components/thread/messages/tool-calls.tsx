@@ -87,7 +87,7 @@ export function ToolResult({ message }: { message: ToolMessage }) {
     : String(message.content);
 
   return (
-    <div className="mx-auto grid grid-rows-[1fr_auto] gap-0 w-full min-w-[800px] -mt-10">
+    <div className="mx-auto grid grid-rows-[1fr_auto] gap-0 w-full min-w-[800px]">
       <div className="overflow-hidden rounded-lg border border-gray-200 max-w-3xl w-full">
         <div className="border-b border-gray-200 bg-gray-50 px-4 py-0.5 w-full">
           <div className="flex items-center justify-between gap-0 w-full">
