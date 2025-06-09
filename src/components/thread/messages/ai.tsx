@@ -160,7 +160,7 @@ export function AssistantMessage({
               </div>
             )}
 
-            {!hideToolCalls && (
+            {/* {!hideToolCalls && (
               <>
                 {(hasToolCalls && toolCallsHaveContents && (
                   <ToolCalls toolCalls={message.tool_calls} />
@@ -172,7 +172,7 @@ export function AssistantMessage({
                     <ToolCalls toolCalls={message.tool_calls} />
                   ))}
               </>
-            )}
+            )} */}
 
             {message && (
               <CustomComponent
