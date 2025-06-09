@@ -129,28 +129,20 @@ export function ToolResult({ message }: { message: ToolMessage }) {
                       <tbody className="divide-y divide-gray-200 w-full">
                         {(Array.isArray(parsedContent)
                           ? parsedContent
-                          : Object.entries(parsedContent)
-                        ).map((item, argIdx) => {
-                          const [key, value] = Array.isArray(parsedContent)
-                            ? [argIdx, item]
-                            : [item[0], item[1]];
-                          return (
-                            <tr key={argIdx} className="w-full">
-                              <td className="px-4 py-2 text-sm font-medium whitespace-nowrap text-gray-900 w-1/4">
-                                {key}
-                              </td>
-                              <td className="px-4 py-2 text-sm text-gray-500 w-3/4">
-                                {isComplexValue(value) ? (
-                                  <code className="rounded bg-gray-50 px-2 py-1 font-mono text-sm break-all">
-                                    {JSON.stringify(value, null, 2)}
-                                  </code>
-                                ) : (
-                                  <MarkdownText>{value}</MarkdownText> 
-                                )}
-                              </td>
-                            </tr>
-                          );
-                        })}
+                          : Object.values(parsedContent)
+                        ).map((value, idx) => (
+                          <tr key={idx} className="w-full">
+                            <td className="px-4 py-2 text-sm text-gray-500 w-full">
+                              {isComplexValue(value) ? (
+                                <code className="rounded bg-gray-50 px-2 py-1 font-mono text-sm break-all">
+                                  {JSON.stringify(value, null, 2)}
+                                </code>
+                              ) : (
+                                typeof value === "string" ? <MarkdownText>{value}</MarkdownText> : String(value)
+                              )}
+                            </td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   ) : (
