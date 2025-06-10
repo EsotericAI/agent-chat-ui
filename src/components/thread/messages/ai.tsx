@@ -40,6 +40,15 @@ function detectAnalysisTask(content: string): { isAnalysisTask: boolean; taskInf
   return { isAnalysisTask: false };
 }
 
+// Function to detect askQuestions JSON format
+function detectJsonFormat(content: string): { isJsonContent: boolean } {
+  // Check if content starts with ```json
+  if (content.trim().startsWith('```json')) {
+    return { isJsonContent: true };
+  }
+  return { isJsonContent: false };
+}
+
 function CustomComponent({
   message,
   thread,
@@ -134,6 +143,13 @@ export function AssistantMessage({
     "hideToolCalls",
     parseAsBoolean.withDefault(false),
   );
+
+  // Check if this is a JSON format message
+  const { isJsonContent } = detectJsonFormat(contentString);
+  if (isJsonContent) {
+    //return null to hide the message
+    return null;
+  }
 
   // 检测是否为分析任务
   const { isAnalysisTask, taskInfo, cleanContent } = detectAnalysisTask(contentString);
