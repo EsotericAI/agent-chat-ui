@@ -14,12 +14,12 @@ import { ThreadView } from "../agent-inbox";
 import { useQueryState, parseAsBoolean } from "nuqs";
 import { GenericInterruptView } from "./generic-interrupt";
 import { useArtifact } from "../artifact";
-import { AnalysisTaskHeader } from "../analysis-task-header";
+import { AnalysisTaskHeader } from "./analysis-task-header";
 
 // 检测分析任务模式的函数
 function detectAnalysisTask(content: string): { isAnalysisTask: boolean; taskInfo?: { current: number; total: number; description: string }; cleanContent?: string } {
   // 正则表达式匹配模式：数字/数字 Analyse: 任意文本
-  const analysisPattern = /^(\d+)\/(\d+)\s+Analyse:\s*(.+)$/m;
+  const analysisPattern = /^(\d+)\/(\d+)\s+Analysing:\s*(.+)$/m;
   const match = content.match(analysisPattern);
   
   if (match) {
@@ -62,6 +62,7 @@ function CustomComponent({
           stream={thread}
           message={customComponent}
           meta={{ ui: customComponent, artifact }}
+          style={{ maxWidth: '600px', width: '100%' }}
         />
       ))}
     </Fragment>
@@ -183,36 +184,17 @@ export function AssistantMessage({
         ) : (
           <>
             {contentString.length > 0 && (
-              <div className={cn(
-                "py-1",
-                // 分析任务的特殊容器样式
-                isAnalysisTask && [
-                  "relative overflow-hidden",
-                  "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50",
-                  "dark:from-slate-900/50 dark:via-blue-950/30 dark:to-indigo-950/30",
-                  "border border-blue-200 dark:border-blue-800/50",
-                  "rounded-xl p-5 shadow-lg shadow-blue-100/50 dark:shadow-none",
-                  // 添加微妙的光泽效果
-                  "before:absolute before:inset-0 before:bg-gradient-to-br",
-                  "before:from-white/20 before:via-transparent before:to-transparent",
-                  "before:rounded-xl before:pointer-events-none"
-                ]
-              )}>
-                {/* 分析任务头部 */}
-                {isAnalysisTask && taskInfo && (
-                  <AnalysisTaskHeader 
-                    current={taskInfo.current} 
-                    total={taskInfo.total}
-                  />
-                )}
-                
-                {/* Markdown内容 */}
-                <div className={cn(
-                  isAnalysisTask && "relative z-10" // 确保内容在渐变之上
-                )}>
-                  <MarkdownText>{isAnalysisTask && cleanContent ? cleanContent : contentString}</MarkdownText>
+              isAnalysisTask && taskInfo ? (
+                <AnalysisTaskHeader 
+                  current={taskInfo.current} 
+                  total={taskInfo.total}
+                  content={cleanContent || contentString}
+                />
+              ) : (
+                <div className="py-1">
+                  <MarkdownText>{contentString}</MarkdownText>
                 </div>
-              </div>
+              )
             )}
 
             {/* {!hideToolCalls && (

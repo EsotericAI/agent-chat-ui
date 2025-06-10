@@ -189,33 +189,34 @@ export function CommandBar({
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <ContentCopyable
-        content={content}
-        disabled={isLoading}
-      />
-      {isAiMessage && !!handleRegenerate && (
-        <TooltipIconButton
-          disabled={isLoading}
-          tooltip="Refresh"
-          variant="ghost"
-          onClick={handleRegenerate}
-        >
-          <RefreshCcw />
-        </TooltipIconButton>
-      )}
-      {showEdit && (
-        <TooltipIconButton
-          disabled={isLoading}
-          tooltip="Edit"
-          variant="ghost"
-          onClick={() => {
-            setIsEditing?.(true);
-          }}
-        >
-          <Pencil />
-        </TooltipIconButton>
-      )}
-    </div>
+    // <div className="flex items-center gap-2">
+    //   <ContentCopyable
+    //     content={content}
+    //     disabled={isLoading}
+    //   />
+    //   {isAiMessage && !!handleRegenerate && (
+    //     <TooltipIconButton
+    //       disabled={isLoading}
+    //       tooltip="Refresh"
+    //       variant="ghost"
+    //       onClick={handleRegenerate}
+    //     >
+    //       <RefreshCcw />
+    //     </TooltipIconButton>
+    //   )}
+    //   {showEdit && (
+    //     <TooltipIconButton
+    //       disabled={isLoading}
+    //       tooltip="Edit"
+    //       variant="ghost"
+    //       onClick={() => {
+    //         setIsEditing?.(true);
+    //       }}
+    //     >
+    //       <Pencil />
+    //     </TooltipIconButton>
+    //   )}
+    // </div>
+    <div></div>
   );
 }

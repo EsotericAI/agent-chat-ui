@@ -103,8 +103,8 @@ export function ThreadActionsView({
   const ignoreAllowed = interrupt.config.allow_ignore;
 
   return (
-    <div className="flex min-h-full w-full flex-col gap-9">
-      {/* Header */}
+    <div className="flex w-full flex-col gap-9">
+      {/* Header
       <div className="flex w-full flex-wrap items-center justify-between gap-3">
         <div className="flex items-center justify-start gap-3">
           <p className="text-2xl tracking-tighter text-pretty">{threadTitle}</p>
@@ -149,7 +149,7 @@ export function ThreadActionsView({
             Ignore
           </Button>
         )}
-      </div>
+      </div> */}
 
       {/* Actions */}
       <InboxItemInput

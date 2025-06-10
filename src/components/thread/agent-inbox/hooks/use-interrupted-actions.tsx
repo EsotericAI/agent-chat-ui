@@ -169,10 +169,10 @@ export default function useInterruptedActions({
           return;
         }
 
-        toast("Success", {
-          description: "Response submitted successfully.",
-          duration: 5000,
-        });
+        // toast("Success", {
+        //   description: "Response submitted successfully.",
+        //   duration: 5000,
+        // });
 
         if (!errorOccurred) {
           setStreamFinished(true);
@@ -210,10 +210,10 @@ export default function useInterruptedActions({
       setLoading(true);
       resumeRun(humanResponse);
 
-      toast("Success", {
-        description: "Response submitted successfully.",
-        duration: 5000,
-      });
+      // toast("Success", {
+      //   description: "Response submitted successfully.",
+      //   duration: 5000,
+      // });
     }
 
     setLoading(false);

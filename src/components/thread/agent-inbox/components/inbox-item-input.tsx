@@ -108,7 +108,7 @@ function ResponseComponent({
 
   return (
     <div className="flex w-full flex-col items-start gap-4 rounded-xl border-[1px] border-gray-300 p-6">
-      <div className="flex w-full items-center justify-between">
+      {/* <div className="flex w-full items-center justify-between">
         <p className="text-base font-semibold text-black">
           Respond to assistant
         </p>
@@ -117,7 +117,7 @@ function ResponseComponent({
             onResponseChange("", res);
           }}
         />
-      </div>
+      </div> */}
 
       {showArgsInResponse && (
         <ArgsRenderer args={interruptValue.action_request.args} />

@@ -3,9 +3,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { MarkdownText } from "@/components/thread/markdown-text";
+import Image from "next/image";
 
 function isComplexValue(value: any): boolean {
   return Array.isArray(value) || (typeof value === "object" && value !== null);
+}
+
+function formatToolName(name: string): string {
+  return name
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 export function ToolCalls({
@@ -91,10 +99,10 @@ export function ToolResult({ message }: { message: ToolMessage }) {
       <div className="overflow-hidden rounded-lg border border-gray-200 max-w-3xl w-full">
         <div className="border-b border-gray-200 bg-gray-50 px-4 py-0.5 w-full">
           <div className="flex items-center justify-between gap-0 w-full">
-            <h3 className="font-medium text-gray-900 flex items-center gap-2">
-              Tool Call:{" "}
-              <code className="rounded bg-gray-100 px-2 py-1">{message.name}</code>
-            </h3>
+            <div className="font-medium text-gray-900 flex items-center gap-2">
+              <Image src="/tool.svg" alt="Tool" width={16} height={16} />
+              <code className="rounded text-sm">{message.name ? formatToolName(message.name) : ''}</code>
+            </div>
             <motion.button
               onClick={() => setIsExpanded(!isExpanded)}
               className="flex items-center justify-center text-gray-500 transition-all duration-200 ease-in-out hover:text-gray-600"
