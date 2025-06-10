@@ -17,19 +17,23 @@ import { useArtifact } from "../artifact";
 import { AnalysisTaskHeader } from "../analysis-task-header";
 
 // 检测分析任务模式的函数
-function detectAnalysisTask(content: string): { isAnalysisTask: boolean; taskInfo?: { current: number; total: number; description: string } } {
+function detectAnalysisTask(content: string): { isAnalysisTask: boolean; taskInfo?: { current: number; total: number; description: string }; cleanContent?: string } {
   // 正则表达式匹配模式：数字/数字 Analyse: 任意文本
   const analysisPattern = /^(\d+)\/(\d+)\s+Analyse:\s*(.+)$/m;
   const match = content.match(analysisPattern);
   
   if (match) {
+    // 移除"数字/数字 Analyse: "前缀，只保留后面的内容
+    const cleanContent = content.replace(analysisPattern, match[3].trim());
+    
     return {
       isAnalysisTask: true,
       taskInfo: {
         current: parseInt(match[1], 10),
         total: parseInt(match[2], 10),
         description: match[3].trim()
-      }
+      },
+      cleanContent
     };
   }
   
@@ -131,7 +135,7 @@ export function AssistantMessage({
   );
 
   // 检测是否为分析任务
-  const { isAnalysisTask, taskInfo } = detectAnalysisTask(contentString);
+  const { isAnalysisTask, taskInfo, cleanContent } = detectAnalysisTask(contentString);
 
   const thread = useStreamContext();
   const isLastMessage =
@@ -206,7 +210,7 @@ export function AssistantMessage({
                 <div className={cn(
                   isAnalysisTask && "relative z-10" // 确保内容在渐变之上
                 )}>
-                  <MarkdownText>{contentString}</MarkdownText>
+                  <MarkdownText>{isAnalysisTask && cleanContent ? cleanContent : contentString}</MarkdownText>
                 </div>
               </div>
             )}
