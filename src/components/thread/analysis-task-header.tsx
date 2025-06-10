@@ -49,9 +49,6 @@ export function AnalysisTaskHeader({ current, total, className }: AnalysisTaskHe
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.4 }}
       >
-        <span className="text-xs font-medium text-muted-foreground">
-          {Math.round(progressPercentage)}%
-        </span>
         <div className="rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/50 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300 shadow-sm">
           Analysis Task
         </div>
