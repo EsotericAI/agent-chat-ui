@@ -50,6 +50,9 @@
   overflow-y: hidden;
   margin: 1em 0;
   max-width: 100%;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
 }
 
 .markdown-content .katex {
@@ -58,13 +61,51 @@
   word-break: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
 }
 
 .markdown-content .katex-html {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  color: inherit !important;
 }
+
+.markdown-content .katex .mord, .katex .mbin, .katex .mrel {
+  font-family: inherit !important;
+}
+
+.markdown-content .katex .mord.text > span {
+  margin-right: 1em;
+}
+.markdown-content .katex .mord.text > span:last-child {
+  margin-right: 0;
+}
+
+/* 处理文本模式中的单词间距 */
+.markdown-content .katex .mord.text {
+  word-spacing: normal !important;
+}
+
+/* 确保数学操作符与文本对齐 */
+.markdown-content .katex .mbin, .katex .mrel {
+  vertical-align: baseline !important;
+}
+
+/* 特别处理行内公式 */
+.markdown-content .katex-inline {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.markdown-content .katex .mathnormal {
+  font-family: inherit !important;
+}
+
 
 /* Ensure all content within markdown respects container bounds */
 .markdown-content * {

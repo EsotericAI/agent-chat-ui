@@ -247,7 +247,8 @@ const MarkdownTextImpl: FC<{ children: string }> = ({ children }) => {
   return (
     <div className="markdown-content max-w-full overflow-hidden">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
+        // remarkPlugins={[remarkGfm, remarkMath]}
+        remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeKatex]}
         components={defaultComponents}
       >
