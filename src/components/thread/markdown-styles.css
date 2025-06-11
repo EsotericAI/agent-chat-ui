@@ -43,3 +43,47 @@
 .markdown-content tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+/* KaTeX math formula overflow handling */
+.markdown-content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+.markdown-content .katex {
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.markdown-content .katex-html {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Ensure all content within markdown respects container bounds */
+.markdown-content * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Handle very long continuous text and equations */
+.markdown-content p,
+.markdown-content li,
+.markdown-content td {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Special handling for code and mathematical expressions */
+.markdown-content code:not(pre code) {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}

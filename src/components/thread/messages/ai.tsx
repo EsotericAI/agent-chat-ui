@@ -186,8 +186,8 @@ export function AssistantMessage({
   }
 
   return (
-    <div className="group mr-auto flex items-start gap-2">
-      <div className="flex flex-col gap-2">
+    <div className="group mr-auto flex items-start gap-2 w-full max-w-full">
+      <div className="flex flex-col gap-2 w-full max-w-full min-w-0">
         {isToolResult ? (
           <>
             <ToolResult message={message} />
@@ -207,7 +207,7 @@ export function AssistantMessage({
                   content={cleanContent || contentString}
                 />
               ) : (
-                <div className="py-1">
+                <div className="py-1 w-full max-w-full overflow-hidden">
                   <MarkdownText>{contentString}</MarkdownText>
                 </div>
               )
